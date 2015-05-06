@@ -1,0 +1,12 @@
+{
+  "name": "owus",
+  "version": "0.0.0",
+  "authors": [
+    "Nicolas Keller <nicolas.keller@edu.esiee.fr>"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}

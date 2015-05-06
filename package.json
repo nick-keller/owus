@@ -1,0 +1,10 @@
+{
+  "name": "owus",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+  },
+  "authors": [
+    "Nicolas Keller <nicolas.keller@edu.esiee.fr>"
+  ]
+}
