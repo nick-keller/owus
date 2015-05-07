@@ -2,5 +2,10 @@ module.exports = {
     mongodb: {
         host: 'localhost',
         database: 'Owus'
-    }
+    },
+    facebook: {
+        app_id: 'app_id',
+        app_secret: 'app_secret'
+    },
+    secret: 'secret_key'
 };

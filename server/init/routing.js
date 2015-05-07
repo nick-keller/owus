@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var passport = require('passport');
 var routesDir = path.join(__dirname, '../routing');
 
 /**
@@ -10,6 +11,24 @@ var init = function(app) {
     var register = function(prefix, file){
         app.use(prefix, require(path.join(routesDir, file)));
     };
+
+    /**
+     * Login with facebook
+     */
+    app.use(passport.initialize());
+    app.use(passport.session());
+    app.get('/login', passport.authenticate('facebook', {
+        scope: []
+    }));
+    app.get('/login_check',
+        passport.authenticate('facebook', {
+            successRedirect: '/',
+            failureRedirect: '/login'
+        }),
+        function(req, res) {
+            res.redirect('/');
+        }
+    );
 
     // add routes
     //register('/', 'main');
