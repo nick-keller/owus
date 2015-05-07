@@ -13,19 +13,7 @@ var init = function(parameters) {
             User.findOne({facebookId:profile.id}, function(err, user) {
                 if(err) return done(err);
 
-                // new user => register him
-                if(!user){
-                    user = new User({
-                        name: profile.displayName,
-                        facebookId: profile.id,
-                        profileUrl: profile.profileUrl,
-                        accessToken: accessToken
-                    });
-
-                    user.save(function(err){
-                        return done(err, user);
-                    });
-                }
+                if(!user) user = new User({facebookId: profile.id});
 
                 user.name = profile.displayName;
                 user.profileUrl = profile.profileUrl;
