@@ -13,23 +13,18 @@ var init = function(parameters) {
             User.findOne({facebookId:profile.id}, function(err, user) {
                 if(err) return done(err);
 
-                // new user => register him
-                if(!user){
+                if(!user) {
                     user = new User({
-                        name: profile.displayName,
                         facebookId: profile.id,
+                        name: profile.displayName,
                         profileUrl: profile.profileUrl,
                         accessToken: accessToken
                     });
-
-                    user.save(function(err){
-                        return done(err, user);
-                    });
+                } else {
+                    user.name = profile.displayName;
+                    user.profileUrl = profile.profileUrl;
+                    user.accessToken = accessToken;
                 }
-
-                user.name = profile.displayName;
-                user.profileUrl = profile.profileUrl;
-                user.accessToken = accessToken;
 
                 user.save(function(err){
                     return done(err, user);
@@ -46,11 +41,7 @@ var init = function(parameters) {
         });
     });
 
-    passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
-            done(err, user);
-        });
-    });
+    passport.deserializeUser(User.findById);
 };
 
 module.exports = init;

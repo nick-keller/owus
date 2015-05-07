@@ -33,6 +33,10 @@ var init = function(app) {
     // add routes
     //register('/', 'main');
 
+    //app.get('/', function (req, res) {
+    //    res.render('index', { name: 'nicolas' });
+    //});
+
     // if no match found try to serve static file
     app.use(express.static(path.join(__dirname, '../../public')));
 
