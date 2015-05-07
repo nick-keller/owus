@@ -34,11 +34,7 @@ var init = function(parameters) {
         });
     });
 
-    passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
-            done(err, user);
-        });
-    });
+    passport.deserializeUser(User.findById);
 };
 
 module.exports = init;
