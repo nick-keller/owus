@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var passport = require('passport');
+var fs = require('fs');
 var routesDir = path.join(__dirname, '../routing');
 
 /**
@@ -18,7 +19,7 @@ var init = function(app) {
     app.use(passport.initialize());
     app.use(passport.session());
     app.get('/login', passport.authenticate('facebook', {
-        scope: []
+        scope: ['public_profile', 'user_friends']
     }));
     app.get('/login_check',
         passport.authenticate('facebook', {

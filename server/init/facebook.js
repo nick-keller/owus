@@ -2,6 +2,7 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var FB = require('fb');
 
 var init = function(parameters) {
     passport.use(new FacebookStrategy({
@@ -16,13 +17,17 @@ var init = function(parameters) {
                 if(!user) user = new User({facebookId: profile.id});
 
                 user.name = profile.displayName;
-                user.profileUrl = profile.profileUrl;
                 user.accessToken = accessToken;
 
-                user.save(function(err){
-                    return done(err, user);
-                });
+                FB.setAccessToken(accessToken);
 
+                FB.api(profile.id, {fields:['picture']}, function(response){
+                    user.profileUrl = response.picture.data.url;
+
+                    user.save(function(err){
+                        return done(err, user);
+                    });
+                });
             });
         }
     ));

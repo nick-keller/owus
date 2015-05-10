@@ -2,9 +2,22 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>Owus</title>
+    <link href="assets/compiled/design.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Bonjour {{user.name}} !</h1>
+<body ng-app="owus">
+    <nav-bar></nav-bar>
+
+    <script src="assets/compiled/script.js"></script>
+    <script type="text/javascript">
+        angular.module('owus')
+            .factory('user', function clientIdFactory() {
+                return {
+                    accessToken: '{{ user.accessToken|raw }}',
+                    profileUrl: '{{ user.profileUrl|raw }}',
+                    name: '{{ user.name }}'
+                };
+            });
+    </script>
 </body>
 </html>
