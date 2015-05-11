@@ -1,7 +1,7 @@
 (function(){
     'use strict';
 
-    var modules = ['templates'];
+    var modules = ['templates', 'ui.router'];
     angular
         .module('owus', modules)
         .run();

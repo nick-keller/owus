@@ -14,10 +14,10 @@ gulp.task('angular-template', function () {
         .pipe(gulp.dest('public/assets/compiled/temp'));
 });
 
-gulp.task('less', function() {
+gulp.task('less', ['copy-icons'], function() {
     return gulp.src(['bower_components/material-design-iconic-font/less/material-design-iconic-font.less', 'public/assets/less/*.less'])
         .pipe(less())
-        //.pipe(minifyCSS())
+        .pipe(minifyCSS())
         .pipe(concat('design.css'))
         .pipe(gulp.dest('public/assets/compiled'));
 });
@@ -25,7 +25,7 @@ gulp.task('less', function() {
 gulp.task('copy', ['copy-angular', 'copy-icons']);
 
 gulp.task('copy-angular', function () {
-    return gulp.src('bower_components/angular/angular.js')
+    return gulp.src(['bower_components/angular/angular.js', 'bower_components/angular-ui-router/release/angular-ui-router.js'])
         .pipe(gulp.dest('public/assets/compiled/temp'));
 });
 
@@ -34,8 +34,8 @@ gulp.task('copy-icons', function () {
         .pipe(gulp.dest('public/assets/fonts'));
 });
 
-gulp.task('concat', ['angular-template', 'copy'], function () {
-    return gulp.src(['public/assets/compiled/temp/*.js', 'public/app/*.js', 'public/app/**/*.js'])
+gulp.task('concat', ['angular-template', 'copy-angular'], function () {
+    return gulp.src(['public/assets/compiled/temp/angular.js', 'public/assets/compiled/temp/*.js', 'public/app/*.js', 'public/app/**/*.js'])
         .pipe(concat('script.js'))
         .pipe(gulp.dest('public/assets/compiled'));
 });

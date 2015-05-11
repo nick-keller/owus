@@ -21,8 +21,15 @@ var init = function(parameters) {
 
                 FB.setAccessToken(accessToken);
 
-                FB.api(profile.id, {fields:['picture']}, function(response){
+                FB.api(profile.id, {fields:['picture', 'friends']}, function(response){
+                    var friends = [];
+
+                    response.friends.data.forEach(function(f){
+                        friends.push(f.id);
+                    });
+
                     user.profileUrl = response.picture.data.url;
+                    user.friends = friends;
 
                     user.save(function(err){
                         return done(err, user);

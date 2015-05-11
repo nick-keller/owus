@@ -8,6 +8,7 @@
 </head>
 <body ng-app="owus">
     <nav-bar></nav-bar>
+    <section ui-view></section>
 
     <script src="assets/compiled/script.js"></script>
     <script type="text/javascript">
@@ -16,7 +17,8 @@
                 return {
                     accessToken: '{{ user.accessToken|raw }}',
                     profileUrl: '{{ user.profileUrl|raw }}',
-                    name: '{{ user.name }}'
+                    name: '{{ user.name }}',
+                    friends: [{{ user.friends }}]
                 };
             });
     </script>

@@ -10,7 +10,8 @@ var UserSchema = new Schema({
     email: String,
     facebookId: Number,
     profileUrl: String,
-    accessToken: String
+    accessToken: String,
+    friends: [Number]
 });
 
 mongoose.model('User', UserSchema);
