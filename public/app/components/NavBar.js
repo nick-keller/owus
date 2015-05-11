@@ -13,7 +13,7 @@
                 templateUrl: 'components/NavBar.html',
                 scope: {},
                 controller: 'navBarController',
-                controllerAs: 'navBar',
+                controllerAs: 'navBarCtrl',
                 bindScopeToController: true
             };
         }]);

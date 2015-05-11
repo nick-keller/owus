@@ -15,20 +15,27 @@ gulp.task('angular-template', function () {
 });
 
 gulp.task('less', function() {
-    return gulp.src('public/assets/less/*.less')
-        .pipe(concat('design.less'))
+    return gulp.src(['bower_components/material-design-iconic-font/less/material-design-iconic-font.less', 'public/assets/less/*.less'])
         .pipe(less())
-        .pipe(minifyCSS())
+        //.pipe(minifyCSS())
+        .pipe(concat('design.css'))
         .pipe(gulp.dest('public/assets/compiled'));
 });
 
-gulp.task('copy', function () {
+gulp.task('copy', ['copy-angular', 'copy-icons']);
+
+gulp.task('copy-angular', function () {
     return gulp.src('bower_components/angular/angular.js')
         .pipe(gulp.dest('public/assets/compiled/temp'));
 });
 
+gulp.task('copy-icons', function () {
+    return gulp.src('bower_components/material-design-iconic-font/fonts/*')
+        .pipe(gulp.dest('public/assets/fonts'));
+});
+
 gulp.task('concat', ['angular-template', 'copy'], function () {
-    return gulp.src(['public/assets/compiled/temp/*.js', 'public/app/**/*.js'])
+    return gulp.src(['public/assets/compiled/temp/*.js', 'public/app/*.js', 'public/app/**/*.js'])
         .pipe(concat('script.js'))
         .pipe(gulp.dest('public/assets/compiled'));
 });
@@ -50,5 +57,5 @@ gulp.task('clean', ['concat'], function () {
 
 gulp.task('watch', function () {
     gulp.watch('public/app/**/*', ['clean']);
-    gulp.watch('public/assets/less/*', ['less']);
+    gulp.watch('public/assets/less/**/*', ['less']);
 });

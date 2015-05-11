@@ -1,24 +1,47 @@
+@import "mixins/all";
+
 nav{
-    @height: 50px;
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
-    height: @height;
-    background: #2976A6;
+    height: @navbar-height;
+    background: @primary;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 16px;
+    color: @white;
+    font-size: 24px;
+    .shadow();
 
     .profile{
-        @size: 40px;
+        @size: @navbar-height - 20px;
 
         width: @size;
         height: @size;
+        margin-right: 16px;
         background: center;
         background-size: cover;
         display: block;
         border-radius: 100%;
+    }
+
+    .add-btn{
+        @size: 56px;
+
+        background: @accent;
+        color: @white;
+        border-radius: 100%;
+        height: @size;
+        width: @size;
+        display: block;
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        margin-top: -@size/2;
+        text-align: center;
+        line-height: @size;
+        cursor: pointer;
+        .shadow(2);
     }
 }
