@@ -32,7 +32,7 @@ var init = function(app) {
     );
 
     // add routes
-    //register('/', 'main');
+    register('/me', 'UserApi');
 
     app.get('/', function (req, res) {
         res.render('index', { user: req.user });

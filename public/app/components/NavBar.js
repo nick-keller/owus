@@ -29,7 +29,7 @@
                 scope: {},
                 controller: 'navBarController',
                 controllerAs: 'navBarCtrl',
-                bindScopeToController: true
+                bindToController: true
             };
         }]);
 })();

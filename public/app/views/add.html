@@ -1,1 +1,17 @@
-<user-selector></user-selector>
+<section>
+    <form class="icon-form" ng-submit="addCtrl.submit($event)">
+        <i class="md md-person"></i>
+        <user-selector model="addCtrl.expense.payer" placeholder="Qui paye ?"></user-selector>
+
+        <i class="md md-label"></i>
+        <input placeholder="Quoi ?" ng-model="addCtrl.expense.title">
+
+        <i class="md md-shopping-cart"></i>
+        <input placeholder="Combien ?" ng-model="addCtrl.expense.amount">
+
+        <i class="md md-people"></i>
+        <user-selector model="addCtrl.expense.recipients" placeholder="Pour qui ?"></user-selector>
+
+        <button class="btn raised">Ajouter</button>
+    </form>
+</section>

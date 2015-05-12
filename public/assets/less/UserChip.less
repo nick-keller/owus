@@ -1,0 +1,94 @@
+@import "mixins/all";
+
+.user-chip {
+    @size: 32px;
+
+    background: @dark-white;
+    padding: 0 12px 0 (@size + 8px);
+    margin: 2px 2px 2px 0;
+    display: inline-block;
+    border-radius: @size/2;
+    line-height: @size;
+    position: relative;
+
+    .profile{
+        height: @size;
+        width: @size;
+        position: absolute;
+        left: 0;
+    }
+
+    .action {
+        display: none;
+    }
+
+    .modal.user-list &{
+        background: none;
+        padding: 16px;
+        padding-left: 56px;
+        margin: 0 -16px;
+        display: block;
+        border-radius: 0;
+        cursor: pointer;
+
+        .profile{
+            @size: 40px;
+
+            width: @size;
+            height: @size;
+            top: 50%;
+            left: 8px;
+            margin-top: -@size/2;
+        }
+
+        &:hover, &.active{
+
+            .action {
+                @size: 16px;
+
+                display: block;
+                position: absolute;
+                color: @accent-light;
+                background: @white;
+                width: @size;
+                height: @size;
+                right: 16px;
+                top: 50%;
+                text-align: center;
+                line-height: @size;
+                border-radius: 100%;
+                margin-top: -@size/2;
+
+                .md-clear {
+                    display: none;
+                }
+            }
+        }
+
+        &:hover {
+            background: @dark-white;
+
+            .action{
+                color: @light-gray;
+            }
+        }
+
+        &.active{
+            background: @accent-light;
+            color: @white;
+
+            .action{
+                color: @accent-light;
+            }
+        }
+
+        &.active:hover .action {
+            .md-clear {
+                display: inline-block;
+            }
+            .md-done {
+                display: none;
+            }
+        }
+    }
+}

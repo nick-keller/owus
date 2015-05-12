@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var path = require('path');
+var repository = require('../repository/UserRepository');
 var Schema = mongoose.Schema;
 
 /**
@@ -13,5 +14,7 @@ var UserSchema = new Schema({
     accessToken: String,
     friends: [Number]
 });
+
+UserSchema.statics.findFriends = repository.findFriends;
 
 mongoose.model('User', UserSchema);

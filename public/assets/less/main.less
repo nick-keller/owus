@@ -15,3 +15,38 @@ body{
 a{
     cursor: pointer;
 }
+
+section{
+    padding: 16px;
+}
+
+.profile{
+    @size: 19px;
+
+    width: @size;
+    height: @size;
+    vertical-align: text-top;
+    display: inline-block;
+    background: center;
+    background-size: cover;
+    border-radius: 100%;
+}
+
+.btn {
+    text-transform: uppercase;
+    color: @primary;
+    padding: 0 16px;
+    background: none;
+    border: none;
+    margin-top: 16px;
+    cursor: pointer;
+
+    &.raised{
+        .shadow();
+        background: @primary;
+        color: @white;
+        padding: 0 8px;
+        height: 36px;
+        line-height: 36px;
+    }
+}

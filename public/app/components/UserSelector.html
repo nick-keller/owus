@@ -1,1 +1,26 @@
-select user
+<div class="input caret user"
+     ng-class="{empty: ctrl.isEmpty()}"
+     ng-click="ctrl.selecting = true"
+        >
+    <span ng-if="ctrl.isEmpty()">
+        {{ ctrl.placeholder }}
+    </span>
+
+    <user-chip ng-repeat="user in ctrl.selectedUsers"
+               user="user">
+    </user-chip>
+</div>
+
+<div class="modal user-list"
+     ng-if="ctrl.selecting"
+        >
+    <div ng-repeat="user in ctrl.friends"
+         ng-click="ctrl.select(user)"
+            >
+        <user-chip user="user" selected="ctrl.isSelected(user)"></user-chip>
+    </div>
+
+    <div class="actions">
+        <a ng-click="ctrl.selecting = false">Ok</a>
+    </div>
+</div>

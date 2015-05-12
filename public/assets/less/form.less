@@ -1,0 +1,94 @@
+@import "mixins/all";
+
+form{
+    &.icon-form{
+        margin-left: 56px;
+        position: relative;
+
+        > i.md{
+            position: absolute;
+            left: -56px;
+            width: 40px;
+            text-align: center;
+            font-size: 22px;
+            margin-top: 4px;
+            color: @dark-gray;
+        }
+    }
+}
+
+input, .input{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 0;
+    background: transparent;
+    border: none;
+    color: @black;
+    box-shadow: 0 1px @light-gray;
+    transition: all .3s;
+    margin: 8px 0;
+    font-size: 16px;
+    position: relative;
+
+    &::-moz-placeholder, &:-moz-placeholder{
+        color: @gray;
+        opacity: 1;
+    }
+
+    &::-webkit-input-placeholder{
+        color: @gray;
+    }
+
+    &.empty{
+        color: @gray;
+    }
+
+    &:focus{
+        box-shadow: 0 2px @accent;
+        outline: none;
+    }
+
+    &.caret{
+        cursor: pointer;
+        padding-right: 12px;
+
+        &:after{
+            @size: 6px;
+
+            content: "";
+            border: solid @size transparent;
+            position: absolute;
+            border-bottom: none;
+            border-top-color: @light-gray;
+            right: 0;
+            top: 50%;
+            margin-top: -@size/2;
+        }
+    }
+
+    .full-width &{
+        padding: 16px;
+        margin: 0;
+
+        &.caret {
+            padding-right: 28px;
+
+            &:after {
+                right: 16px;
+            }
+        }
+
+        &.user{
+            padding-top: 7px;
+            padding-bottom: 7px;
+            line-height: 32px;
+        }
+    }
+
+    &.user{
+        padding-top: 1px;
+        padding-bottom: 1px;
+        line-height: 32px;
+    }
+}

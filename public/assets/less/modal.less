@@ -1,0 +1,29 @@
+@import "mixins/all";
+
+.modal{
+    position: fixed;
+    background: @white;
+    .shadow(2);
+    z-index: 1000;
+    padding: 16px;
+    top: @navbar-height + 16px;
+    left: 16px;
+    right: 16px;
+
+    &.user-list{
+        padding-top: 0;
+    }
+
+    .actions{
+        text-transform: uppercase;
+        text-align: right;
+        margin-top: 16px;
+
+        a{
+            color: @primary;
+            font-size: 18px;
+            padding: 0 16px;
+            display: inline-block;
+        }
+    }
+}
