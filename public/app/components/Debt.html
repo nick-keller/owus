@@ -12,12 +12,16 @@
         </small>
     </div>
     <div ng-if="ctrl.deployed">
-        <div ng-repeat="expense in debt.expenses" class="item" ng-class="{last:$last}">
-            <i class="md md-label-outline"></i>
-            <span class="pull-right" ng-class="{neg:!ctrl.userIsPayer(expense)}">
-                {{ expense.amount / expense.recipients.length |currency:'€' }}
-            </span>
-            {{ expense.title }}
+        <!--<div ng-repeat="expense in debt.expenses" class="item" ng-class="{last:$last}">-->
+            <!--<span class="pull-right">-->
+                <!--{{ expense.amount / expense.recipients.length |currency:'' }}-->
+            <!--</span>-->
+            <!--{{ expense.title }}-->
+        <!--</div>-->
+        <div class="timeline">
+            <div ng-repeat="expense in debt.expenses" class="event" ng-class="{last:$last}">
+                {{ expense.title }}
+            </div>
         </div>
     </div>
 </div>
