@@ -17,6 +17,7 @@
                 return {
                     accessToken: '{{ user.accessToken|raw }}',
                     profileUrl: '{{ user.profileUrl|raw }}',
+                    facebookId: {{ user.facebookId }},
                     name: '{{ user.name }}'
                 };
             });

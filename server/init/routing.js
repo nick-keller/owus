@@ -33,8 +33,11 @@ var init = function(app) {
 
     // add routes
     register('/me', 'UserApi');
+    register('/expenses', 'ExpenseApi');
 
     app.get('/', function (req, res) {
+        if(req.user === undefined)
+            return res.redirect('/login');
         res.render('index', { user: req.user });
     });
 

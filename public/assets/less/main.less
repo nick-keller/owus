@@ -18,6 +18,19 @@ a{
 
 section{
     padding: 16px;
+
+    &.dark{
+        padding: 8px;
+        background: @light-gray;
+        min-height: 100vh;
+    }
+}
+
+article{
+    background: @white;
+    border-radius: 3px;
+    .shadow(1);
+    padding: 16px;
 }
 
 .profile{

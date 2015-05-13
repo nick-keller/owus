@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var path = require('path');
+var repository = require('../repository/ExpenseRepository');
 var Schema = mongoose.Schema;
 
 /**
@@ -18,5 +19,7 @@ var ExpenseSchema = new Schema({
         ref: 'User'
     }]
 });
+
+ExpenseSchema.statics.findDebtsOfUser = repository.findDebtsOfUser;
 
 mongoose.model('Expense', ExpenseSchema);
