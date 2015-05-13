@@ -59,7 +59,7 @@ gulp.task('clean', ['concat'], function () {
         });
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', ['default'], function () {
     gulp.watch('public/app/**/*', ['clean']);
     gulp.watch('public/assets/less/**/*', ['less']);
 });

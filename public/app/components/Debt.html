@@ -1,0 +1,23 @@
+<div class="list-item debt" ng-class="{last:last}">
+    <div class="toggle" ng-click="ctrl.deployed = !ctrl.deployed">
+        <div class="profile large" style="background-image: url({{ debt.user.profileUrl }})"></div>
+
+            <span class="amount" ng-class="{neg:debt.amount>0}">
+                {{ ctrl.abs(debt.amount)|currency:'€' }}
+            </span>
+
+        {{ debt.user.name }}
+        <small>
+            {{ debt.expenses.length }} {{ debt.expenses.length == 1 ? 'dépense' : 'dépenses' }}
+        </small>
+    </div>
+    <div ng-if="ctrl.deployed">
+        <div ng-repeat="expense in debt.expenses" class="item" ng-class="{last:$last}">
+            <i class="md md-label-outline"></i>
+            <span class="pull-right" ng-class="{neg:!ctrl.userIsPayer(expense)}">
+                {{ expense.amount / expense.recipients.length |currency:'€' }}
+            </span>
+            {{ expense.title }}
+        </div>
+    </div>
+</div>

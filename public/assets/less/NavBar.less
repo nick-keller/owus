@@ -1,5 +1,7 @@
 @import "mixins/all";
 
+@sidebarWidth: 80vw;
+
 nav{
     position: fixed;
     top: 0;
@@ -13,6 +15,9 @@ nav{
     color: @white;
     font-size: 24px;
     .shadow();
+    overflow: hidden;
+    white-space: nowrap;
+    transition: all .3s;
 
     > *{
         margin-right: 16px;
@@ -45,6 +50,69 @@ nav{
         text-align: center;
         line-height: @size;
         margin: 0;
-        .shadow(3);
+        z-index: 1000;
+        .shadow(2);
+    }
+
+    .action{
+        color: @primary-dark;
+    }
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: @white;
+    z-index: 1100;
+    overflow: hidden;
+    transition: all .3s;
+    width: @sidebarWidth;
+    transform: translateX(-100%);
+    .shadow(3);
+
+    &.deployed{
+        transform: translateX(0);
+    }
+
+    .header{
+        background: @primary;
+        color: @white;
+        padding: 16px;
+        position: relative;
+        font-size: 20px;
+        .shadow(1);
+
+        .profile{
+            @size: 60px;
+
+            position: absolute;
+            width: @size;
+            height: @size;
+            top: 100%;
+            right: 16px;
+            margin-top: -@size/2;
+        }
+    }
+}
+
+.sidebar-out{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1100;
+    background: rgba(0,0,0,.5);
+    transition: all .3s, visibility 0s .3s;
+    opacity: 0;
+    visibility: hidden;
+
+    &.deployed{
+        left: @sidebarWidth;
+        opacity: 1;
+        visibility: visible;
+        transition: all .3s, visibility 0s;
     }
 }

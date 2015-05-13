@@ -23,15 +23,20 @@ module.exports.findDebtsOfUser = function(user, cb) {
             return -1;
         };
 
-        var addDebt = function(u, amount) {
+        var addDebt = function(u, amount, expense) {
             var index =  indexOfUser(u);
 
             if(!~index) {
                 index = debts.length;
-                debts.push({user: u, amount: 0});
+                debts.push({
+                    user: u,
+                    amount: 0,
+                    expenses: []
+                });
             }
 
             debts[index].amount += amount;
+            debts[index].expenses.push(expense);
         };
 
         expenses.forEach(function(expense){
@@ -40,10 +45,10 @@ module.exports.findDebtsOfUser = function(user, cb) {
             if(eq(expense.payer, user)) {
                 expense.recipients.forEach(function(recipient){
                     if(eq(recipient, user)) return;
-                    addDebt(recipient, -pricePerUser);
+                    addDebt(recipient, -pricePerUser, expense);
                 });
             } else {
-                addDebt(expense.payer, pricePerUser);
+                addDebt(expense.payer, pricePerUser, expense);
             }
         });
 

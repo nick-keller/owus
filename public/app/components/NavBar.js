@@ -9,10 +9,11 @@
             vm.user = user;
             vm.title = 'Owus';
             vm.showAddBtn = true;
+            vm.menuDeployed = false;
 
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, _fromState, fromParams){
                 vm.title = toState.data.title;
-                vm.showAddBtn = toState.name != 'add';
+                vm.showAddBtn = toState.name == 'home';
                 fromState = _fromState;
             });
 
@@ -21,6 +22,10 @@
                     return $state.go('home');
                 $state.go(fromState);
             };
+
+            vm.toggleSidebar = function() {
+                vm.menuDeployed = !vm.menuDeployed;
+            }
         }])
         .directive('navBar', [function() {
             return {

@@ -11,6 +11,8 @@
                 .state('home', {
                     url: "/",
                     templateUrl: "views/home.html",
+                    controller: 'homeController',
+                    controllerAs: 'homeCtrl',
                     data: {
                         title: 'Owus'
                     }

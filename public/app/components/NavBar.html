@@ -1,10 +1,17 @@
 <nav>
-    <a class="action" ng-click="navBarCtrl.goBack()">
-        <i class="md md-arrow-back"></i>
+    <a class="action"
+       ng-click="navBarCtrl.toggleSidebar()">
+        <i class="md md-menu"></i>
     </a>
     <span>{{ navBarCtrl.title }}</span>
-    <a class="profile" style="background-image: url('{{ navBarCtrl.user.profileUrl }}')"></a>
     <a class="add-btn" ui-sref="add" ng-if="navBarCtrl.showAddBtn">
         <i class="md md-add"></i>
     </a>
 </nav>
+<div class="sidebar" ng-class="{deployed:navBarCtrl.menuDeployed}">
+    <div class="header">
+        <div class="profile" style="background-image: url({{ navBarCtrl.user.profileUrl }})"></div>
+        {{ navBarCtrl.user.name }}
+    </div>
+</div>
+<div class="sidebar-out" ng-class="{deployed:navBarCtrl.menuDeployed}" ng-click="navBarCtrl.toggleSidebar()"></div>

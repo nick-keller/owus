@@ -1,3 +1,10 @@
 <section class="dark">
-    <article>Hello</article>
+    <article ng-if="(homeCtrl.debts | filter : {amount: 0} : homeCtrl.positiveDebt).length">
+        <h1 class="offset">Mes dettes</h1>
+        <debt ng-repeat="debt in homeCtrl.debts | filter : {amount: 0} : homeCtrl.positiveDebt | orderBy : '-amount'" debt="debt" last="$last"></debt>
+    </article>
+    <article ng-if="(homeCtrl.debts | filter : {amount: 0} : homeCtrl.negativeDebt).length">
+        <h1 class="offset">Mes créances</h1>
+        <debt ng-repeat="debt in homeCtrl.debts | filter : {amount: 0} : homeCtrl.negativeDebt | orderBy : '-amount'" debt="debt" last="$last"></debt>
+    </article>
 </section>

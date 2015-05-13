@@ -31,6 +31,7 @@ article{
     border-radius: 3px;
     .shadow(1);
     padding: 16px;
+    margin-bottom: 8px;
 }
 
 .profile{
@@ -43,6 +44,11 @@ article{
     background: center;
     background-size: cover;
     border-radius: 100%;
+
+    &.large{
+        width: 40px;
+        height: 40px;
+    }
 }
 
 .btn {
@@ -53,6 +59,7 @@ article{
     border: none;
     margin-top: 16px;
     cursor: pointer;
+    text-decoration: none;
 
     &.raised{
         .shadow();
@@ -62,4 +69,46 @@ article{
         height: 36px;
         line-height: 36px;
     }
+}
+
+.list-item{
+    padding: 16px 0;
+    position: relative;
+
+    &:after{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        height: 1px;
+        background: @light-gray;
+    }
+
+    &.last:after{
+        display: none;
+    }
+}
+
+h1, h2, h3{
+    font-weight: normal;
+    margin: 8px 0;
+
+    &.offset, &.offset + .subtitle{
+        margin-left: 56px;
+    }
+}
+
+h1{
+    font-size: 20px;
+}
+
+.subtitle{
+    font-size: 14px;
+    color: @gray;
+    margin-top: -4px;
+}
+
+.pull-right{
+    float: right;
 }
