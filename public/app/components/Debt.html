@@ -5,7 +5,7 @@
             <span class="amount">
                 {{ ctrl.abs(debt.amount)|currency:'€' }}
                 <i class="md md-more-vert" ng-click="ctrl.subMenu = !ctrl.subMenu; $event.stopPropagation()" style="position: relative">
-                    <div class="submenu" ng-if="ctrl.subMenu">
+                    <div class="submenu"  ng-class="{hidden:!ctrl.subMenu}">
                         <a ui-sref="payback({facebookId:debt.user.facebookId})" ng-if="debt.amount > 0">
                             <i class="md md-reply"></i>
                             Rembourser
@@ -26,7 +26,7 @@
     </div>
     <div ng-if="ctrl.deployed">
         <div class="timeline">
-            <div ng-repeat="expense in debt.expenses" class="event">
+            <div ng-repeat="expense in debt.expenses | orderBy:'-date'" class="event">
                 <i class="md" ng-class="{'md-add':ctrl.userIsPayer(expense), 'md-remove':!ctrl.userIsPayer(expense)}"></i>
                 <span class="pull-right">{{ expense.amount / expense.recipients.length |currency:'' }}</span>
                 {{ expense.title }}

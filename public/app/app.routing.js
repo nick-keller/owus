@@ -43,7 +43,7 @@
                     controller: 'expensesController',
                     controllerAs: 'expensesCtrl',
                     data: {
-                        title: 'Dépenses'
+                        title: 'Historique'
                     }
                 })
                 .state('payback', {
