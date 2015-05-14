@@ -1,3 +1,5 @@
+var mongoose = require('mongoose');
+
 module.exports.findFriends = function(user, cb) {
     this.find({
         facebookId: {
@@ -23,7 +25,7 @@ module.exports.findIds = function(users, cb) {
         var ids = [];
 
         users.forEach(function(user){
-            ids.push(user._id);
+            ids.push(mongoose.Types.ObjectId(user._id));
         });
 
         cb(null, ids);
@@ -37,6 +39,6 @@ module.exports.findId = function(user, cb) {
     }, '_id', function(err, user){
         if(err) cb(err);
 
-        cb(null, user._id);
+        cb(null, mongoose.Types.ObjectId(user._id));
     });
 };

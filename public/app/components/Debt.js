@@ -7,6 +7,7 @@
 
             vm.abs = Math.abs;
             vm.deployed = false;
+            vm.subMenu = false;
 
             vm.userIsPayer = function(expense) {
                 return expense.payer.facebookId === user.facebookId;

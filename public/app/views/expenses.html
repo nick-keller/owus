@@ -1,0 +1,9 @@
+<section style="padding: 56px 16px">
+    <div class="tabs">
+        <a ng-class="{active:expensesCtrl.filter == 'all'}" ng-click="expensesCtrl.filter = 'all'">Tous</a>
+        <a ng-class="{active:expensesCtrl.filter == 'others'}" ng-click="expensesCtrl.filter = 'others'">Emprunts</a>
+        <a ng-class="{active:expensesCtrl.filter == 'me'}" ng-click="expensesCtrl.filter = 'me'">Prêts</a>
+    </div>
+    <expense ng-repeat="expense in expensesCtrl.expenses | expensesFilter:expensesCtrl.filter | orderBy : '-date'"  expense="expense" last="$last">
+    </expense>
+</section>

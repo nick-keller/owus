@@ -7,19 +7,44 @@ var Schema = mongoose.Schema;
  * Expense entity
  */
 var ExpenseSchema = new Schema({
-    title: String,
-    amount: Number,
+    title: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    amount: {
+        type: Number,
+        required: true,
+        trim: true,
+        validate: {
+            validator: function(val) {
+                return val > 0;
+            },
+            msg: "Le montant doit être suppérieur à zéro."
+        }
+    },
     date: Date,
     payer: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
-    recipients: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }]
+    recipients: {
+        type: [{
+            type:Schema.Types.ObjectId,
+            ref: 'User'
+        }],
+        required: true,
+        validate: {
+            validator: function(val) {
+                return val.length > 0;
+            },
+            msg: "Au moint un bénéficiaire attendu."
+        }
+    }
 });
 
 ExpenseSchema.statics.findDebtsOfUser = repository.findDebtsOfUser;
+ExpenseSchema.statics.findWithUser = repository.findWithUser;
 
 mongoose.model('Expense', ExpenseSchema);

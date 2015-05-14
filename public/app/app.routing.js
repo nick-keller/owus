@@ -18,12 +18,45 @@
                     }
                 })
                 .state('add', {
-                    url: "/add",
+                    url: "/expenses/add",
                     templateUrl: "views/add.html",
                     controller: 'addController',
                     controllerAs: 'addCtrl',
                     data: {
-                        title: 'Ajouter'
+                        title: 'Ajouter',
+                        addBtn: false
+                    }
+                })
+                .state('edit', {
+                    url: "/expenses/{id}/edit",
+                    templateUrl: "views/add.html",
+                    controller: 'editController',
+                    controllerAs: 'addCtrl',
+                    data: {
+                        title: 'Editer',
+                        addBtn: false
+                    }
+                })
+                .state('expenses', {
+                    url: "/expenses",
+                    templateUrl: "views/expenses.html",
+                    controller: 'expensesController',
+                    controllerAs: 'expensesCtrl',
+                    data: {
+                        title: 'Dépenses'
+                    }
+                })
+                .state('payback', {
+                    url: "/pay-back/{facebookId:int}",
+                    templateUrl: "views/payback.html",
+                    controller: 'paybackController',
+                    controllerAs: 'paybackCtrl',
+                    data: {
+                        title: 'Rembourser',
+                        addBtn: false
+                    },
+                    params: {
+                        facebookId: null
                     }
                 });
         }]);

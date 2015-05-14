@@ -13,7 +13,7 @@
 
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, _fromState, fromParams){
                 vm.title = toState.data.title;
-                vm.showAddBtn = toState.name == 'home';
+                vm.showAddBtn = toState.data.addBtn !== undefined ? toState.data.addBtn : true;
                 fromState = _fromState;
             });
 
@@ -34,7 +34,10 @@
                 scope: {},
                 controller: 'navBarController',
                 controllerAs: 'navBarCtrl',
-                bindToController: true
+                bindToController: true,
+                link: function(scope, element, attrs){
+                    element.find('.list-item').bind('click', scope.navBarCtrl.toggleSidebar);
+                }
             };
         }]);
 })();

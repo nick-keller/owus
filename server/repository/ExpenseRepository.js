@@ -1,3 +1,12 @@
+module.exports.findWithUser = function(user, cb) {
+    this.find({ $or: [
+            {payer: user._id},
+            {recipients: user._id}
+        ]})
+        .populate('payer recipients', 'name facebookId profileUrl -_id')
+        .exec(cb);
+};
+
 module.exports.findDebtsOfUser = function(user, cb) {
     var eq = function(u1, u2) {
         return u1.facebookId === u2.facebookId;
@@ -25,6 +34,7 @@ module.exports.findDebtsOfUser = function(user, cb) {
 
         var addDebt = function(u, amount, expense) {
             var index =  indexOfUser(u);
+            amount = Math.round(amount * 100) /100;
 
             if(!~index) {
                 index = debts.length;
@@ -37,6 +47,9 @@ module.exports.findDebtsOfUser = function(user, cb) {
 
             debts[index].amount += amount;
             debts[index].expenses.push(expense);
+
+            if(debts[index].amount == 0)
+                debts[index].expenses = [];
         };
 
         expenses.forEach(function(expense){

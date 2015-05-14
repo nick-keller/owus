@@ -2,8 +2,21 @@
     <div class="toggle" ng-click="ctrl.deployed = !ctrl.deployed">
         <div class="profile large" style="background-image: url({{ debt.user.profileUrl }})"></div>
 
-            <span class="amount" ng-class="{neg:debt.amount>0}">
+            <span class="amount">
                 {{ ctrl.abs(debt.amount)|currency:'€' }}
+                <i class="md md-more-vert" ng-click="ctrl.subMenu = !ctrl.subMenu; $event.stopPropagation()" style="position: relative">
+                    <div class="submenu" ng-if="ctrl.subMenu">
+                        <a ui-sref="payback({facebookId:debt.user.facebookId})" ng-if="debt.amount > 0">
+                            <i class="md md-reply"></i>
+                            Rembourser
+                        </a>
+                        <a ui-sref="payback({facebookId:debt.user.facebookId})" ng-if="debt.amount < 0">
+                            <i class="md md-file-download"></i>
+                            Encaisser
+                        </a>
+                    </div>
+                    <div class="dismiss"></div>
+                </i>
             </span>
 
         {{ debt.user.name }}
@@ -12,15 +25,14 @@
         </small>
     </div>
     <div ng-if="ctrl.deployed">
-        <!--<div ng-repeat="expense in debt.expenses" class="item" ng-class="{last:$last}">-->
-            <!--<span class="pull-right">-->
-                <!--{{ expense.amount / expense.recipients.length |currency:'' }}-->
-            <!--</span>-->
-            <!--{{ expense.title }}-->
-        <!--</div>-->
         <div class="timeline">
-            <div ng-repeat="expense in debt.expenses" class="event" ng-class="{last:$last}">
+            <div ng-repeat="expense in debt.expenses" class="event">
+                <i class="md" ng-class="{'md-add':ctrl.userIsPayer(expense), 'md-remove':!ctrl.userIsPayer(expense)}"></i>
+                <span class="pull-right">{{ expense.amount / expense.recipients.length |currency:'' }}</span>
                 {{ expense.title }}
+                <small>
+                    {{ expense.date | date : 'EEE d MMM' }}
+                </small>
             </div>
         </div>
     </div>

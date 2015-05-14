@@ -13,3 +13,9 @@ module.exports.debts = function(req, res) {
         res.json(expenses);
     });
 };
+
+module.exports.expenses = function(req, res) {
+    Expense.findWithUser(req.user, function(err, expenses){
+        res.json(expenses);
+    });
+};

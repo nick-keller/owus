@@ -8,4 +8,7 @@ router.route('/friends')
 router.route('/debts')
     .get(controller.debts);
 
+router.route('/expenses')
+    .get(controller.expenses);
+
 module.exports = router;

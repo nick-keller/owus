@@ -17,11 +17,11 @@
 
         .amount{
             float: right;
-            font-size: 12px;
+            font-size: 14px;
             color: @gray;
 
             &.neg{
-                //color: #DE3226;
+                color: @dark-gray;
             }
         }
 
@@ -31,26 +31,92 @@
             color: @dark-gray;
         }
 
-        //+ div{
-        //    padding-top: 16px;
-        //    .item{
-        //        font-size: 14px;
-        //        padding: 4px 0;
-        //        //border-bottom: solid 1px @light-gray;
-        //
-        //        .pull-right{
-        //            font-size: 12px;
-        //            color: @gray;
-        //        }
-        //
-        //        &.last{
-        //            border: none;
-        //        }
-        //    }
-        //}
+        + div{
+            padding-top: 16px;
+
+            .item{
+                padding: 4px 0;
+
+                .pull-right{
+                    font-size: 14px;
+                    color: @dark-gray;
+                }
+
+                &.muted, &.muted .pull-right{
+                    color: @light-gray;
+
+                    .profile{
+                        opacity: .6;
+                    }
+                }
+            }
+        }
     }
 }
 
 .timeline{
-    border-left: solid 3px @accent;
+    @width: 4px;
+
+    border-left: solid @width @accent-light;
+    margin-top: 20px;
+    padding: 1px 0;
+    margin-bottom: 24px;
+
+    .event{
+        padding-left: 16px;
+        position: relative;
+        margin-top: 16px;
+
+        &:first-child{
+            margin-top: -6px;
+        }
+
+        &:last-child{
+            margin-bottom: -24px;
+        }
+
+        &:only-child:before{
+            content: "";
+            position: absolute;
+            height: 30px;
+            border-left: dotted @width @accent-light;
+            left: -@width;
+            top: 6px;
+        }
+
+        .md{
+            @size: 12px;
+
+            background: @accent-light;
+            position: absolute;
+            left: -@size/2 - @width/2;
+            color: @white;
+            top: 4px;
+            display: block;
+            width: @size;
+            height: @size;
+            text-align: center;
+            line-height: @size;
+            font-size: 12px;
+            border-radius: 100%;
+
+            &.md-remove{
+                background: @accent-dark;
+
+                + .pull-right{
+                    color: @dark-gray;
+                }
+            }
+        }
+
+        .pull-right{
+            font-size: 14px;
+            color: @gray;
+        }
+
+        small{
+            display: block;
+            color: @dark-gray;
+        }
+    }
 }

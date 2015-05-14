@@ -2,13 +2,18 @@
     'use strict';
 
     angular.module('owus')
-        .controller('userSelectorController', ['friends', function(friends){
+        .controller('userSelectorController', ['friends', '$scope', function(friends, $scope){
             var vm = this;
 
-            vm.multiple = vm.model !== undefined ?
+            vm.multiple = vm.multiple ? true : vm.model ?
                 vm.model.length !== undefined :
                 false;
-            vm.friends = friends.getAll();
+
+            if(vm.users === undefined)
+                vm.friends = friends.getAll();
+            else
+                vm.friends = vm.users;
+
             vm.selectedUsers = vm.multiple ? vm.model : !vm.model ? [] : [vm.model];
             vm.selecting = false;
 
@@ -42,6 +47,17 @@
                 }
                 return -1;
             };
+
+            $scope.$watch(function(scope){return scope.ctrl.model;}, function(user){
+                if(!user) return;
+
+                if(!user.length)
+                    vm.select(user);
+                else {
+                    vm.selectedUsers = user;
+                    vm.multiple = true;
+                }
+            });
         }])
         .directive('userSelector', [function() {
             return {
@@ -49,7 +65,8 @@
                 templateUrl: 'components/UserSelector.html',
                 scope: {
                     model: '=',
-                    placeholder: '@'
+                    placeholder: '@',
+                    users: '='
                 },
                 controller: 'userSelectorController',
                 controllerAs: 'ctrl',

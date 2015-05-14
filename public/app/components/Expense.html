@@ -1,0 +1,40 @@
+<div class="list-item debt" ng-class="{last:last}">
+    <div class="toggle" ng-click="ctrl.deployed = !ctrl.deployed">
+        <div class="profile large" style="background-image: url({{ expense.payer.profileUrl }})"></div>
+
+            <span class="amount" ng-class="{neg:!ctrl.userIsPayer()}">
+                {{ expense.amount / (ctrl.userIsPayer() ? 1 : expense.recipients.length)|currency:'€' }}
+                <i class="md md-more-vert" ng-click="ctrl.subMenu = !ctrl.subMenu; $event.stopPropagation()" style="position: relative">
+                    <div class="submenu hidden" ng-class="{hidden:!ctrl.subMenu}">
+                        <a ng-if="!ctrl.userIsPayer()" ui-sref="payback({facebookId:expense.payer.facebookId})">
+                            <i class="md md-reply"></i>
+                            Rembourser
+                        </a>
+                        <a ng-if="ctrl.userIsPayer() && ctrl.numberOfRecipientsOtherThanMe() == 1" ui-sref="payback({facebookId:ctrl.getOtherFacebookId()})">
+                            <i class="md md-file-download"></i>
+                            Encaisser
+                        </a>
+                        <a ui-sref="edit({id:expense._id})">
+                            <i class="md md-edit"></i>
+                            Editer
+                        </a>
+                    </div>
+                    <div class="dismiss"></div>
+                </i>
+            </span>
+
+        {{ expense.title ? expense.title : expense.payer.name }}
+        <small>
+            {{ expense.date | date : 'EEE d MMM' }}
+        </small>
+    </div>
+    <div ng-if="ctrl.deployed">
+        <div ng-repeat="user in expense.recipients" class="item" ng-class="{muted:ctrl.isUser(user) ? ctrl.userIsPayer() : !ctrl.userIsPayer()}">
+            <span class="pull-right">
+                {{ expense.amount / expense.recipients.length|currency:'€' }}
+            </span>
+            <div class="profile" style="background-image: url({{ user.profileUrl }})"></div>
+            {{ user.name }}
+        </div>
+    </div>
+</div>

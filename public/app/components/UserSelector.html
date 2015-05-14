@@ -11,8 +11,8 @@
     </user-chip>
 </div>
 
-<div class="modal user-list"
-     ng-if="ctrl.selecting"
+<div class="modal user-list hidden"
+     ng-class="{hidden:!ctrl.selecting}"
         >
     <div ng-repeat="user in ctrl.friends"
          ng-click="ctrl.select(user)"
@@ -24,3 +24,4 @@
         <a ng-click="ctrl.selecting = false">Ok</a>
     </div>
 </div>
+<div class="dismiss" ng-click="ctrl.selecting = false"></div>

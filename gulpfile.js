@@ -39,7 +39,7 @@ gulp.task('copy-icons', function () {
 });
 
 gulp.task('concat', ['angular-template', 'copy-angular'], function () {
-    return gulp.src(['public/assets/compiled/temp/angular.js', 'public/assets/compiled/temp/*.js', 'public/app/*.js', 'public/app/**/*.js'])
+    return gulp.src(['bower_components/jquery/dist/jquery.js', 'public/assets/compiled/temp/angular.js', 'public/assets/compiled/temp/*.js', 'public/app/*.js', 'public/app/**/*.js'])
         .pipe(concat('script.js'))
         .pipe(gulp.dest('public/assets/compiled'));
 });

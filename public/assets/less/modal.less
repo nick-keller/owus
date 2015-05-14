@@ -4,14 +4,28 @@
     position: fixed;
     background: @white;
     .shadow(2);
-    z-index: 1000;
+    z-index: 1005;
     padding: 16px;
     top: @navbar-height + 16px;
     left: 16px;
     right: 16px;
+    transition: all .3s, visibility 0s;
+    transform-origin: top;
 
     &.user-list{
         padding-top: 0;
+    }
+
+    &.hidden{
+        transform: translateY(-40px);
+        transition: all .3s, visibility 0s .3s;
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(.5);
+
+        ~ .dismiss{
+            display: none;
+        }
     }
 
     .actions{
@@ -25,5 +39,15 @@
             padding: 0 16px;
             display: inline-block;
         }
+    }
+
+    ~ .dismiss{
+        content: "";
+        position: fixed;
+        z-index: 1004;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
 }

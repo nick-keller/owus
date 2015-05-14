@@ -4,7 +4,7 @@
         <i class="md md-menu"></i>
     </a>
     <span>{{ navBarCtrl.title }}</span>
-    <a class="add-btn" ui-sref="add" ng-if="navBarCtrl.showAddBtn">
+    <a class="add-btn" ui-sref="add" ng-class="{hidden:!navBarCtrl.showAddBtn}">
         <i class="md md-add"></i>
     </a>
 </nav>
@@ -13,5 +13,17 @@
         <div class="profile" style="background-image: url({{ navBarCtrl.user.profileUrl }})"></div>
         {{ navBarCtrl.user.name }}
     </div>
+    <a ui-sref="home" class="list-item">
+        <i class="md md-trending-up"></i>
+        Résumé
+    </a>
+    <a ui-sref="expenses" class="list-item">
+        <i class="md md-shopping-cart"></i>
+        Dépenses
+    </a>
+    <a ui-sref="payback" class="list-item">
+        <i class="md md-reply"></i>
+        Rembourser
+    </a>
 </div>
 <div class="sidebar-out" ng-class="{deployed:navBarCtrl.menuDeployed}" ng-click="navBarCtrl.toggleSidebar()"></div>

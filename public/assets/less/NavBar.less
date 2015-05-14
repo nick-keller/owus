@@ -53,6 +53,11 @@ nav{
         margin: 0;
         z-index: 1000;
         .shadow(2);
+        transition: all .3s;
+
+        &.hidden{
+            transform: translateY(@size + 16px);
+        }
     }
 
     .action{
@@ -78,7 +83,8 @@ nav{
     }
 
     .header{
-        background: @primary;
+        background: url('../img/bg.jpg') bottom;
+        background-size: cover;
         color: @white;
         padding: 16px;
         position: relative;
@@ -88,12 +94,25 @@ nav{
         .profile{
             @size: 60px;
 
-            position: absolute;
             width: @size;
             height: @size;
-            top: 100%;
-            right: 16px;
-            margin-top: -@size/2;
+            display: block;
+            margin-bottom: 24px;
+        }
+    }
+
+    .list-item{
+        margin-left: 72px;
+        text-decoration: none;
+        color: @black;
+
+        .md{
+            position: absolute;
+            width: 72px;
+            text-align: center;
+            left: -72px;
+            font-size: 24px;
+            color: @dark-gray;
         }
     }
 }
@@ -115,5 +134,33 @@ nav{
         opacity: 1;
         visibility: visible;
         transition: all .3s, visibility 0s;
+    }
+}
+
+.tabs{
+    position: fixed;
+    top: @navbar-height;
+    left: 0;
+    right: 0;
+    background: @primary;
+    display: flex;
+    z-index: 1001;
+    box-shadow: 0 4px 3px rgba(0,0,0,0.12), 0 3px 2px rgba(0,0,0,0.24);
+
+    > *{
+        color: @primary-light;
+        text-decoration: none;
+        flex: 1;
+        text-align: center;
+        padding: 16px 0;
+        text-transform: uppercase;
+        font-size: 14px;
+        transition: all .4s;
+        box-shadow: 0 0 @accent inset;
+
+        &.active{
+            color: @white;
+            box-shadow: 0 -2px @accent inset;
+        }
     }
 }

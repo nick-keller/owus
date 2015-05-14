@@ -1,0 +1,55 @@
+<section style="padding-top: 64px">
+    <div class="tabs">
+        <a ng-class="{active:!paybackCtrl.payback.receive}" ng-click="paybackCtrl.setReceive(false)">Rembourser</a>
+        <a ng-class="{active:paybackCtrl.payback.receive}" ng-click="paybackCtrl.setReceive(true)">Encaisser</a>
+    </div>
+
+    <form class="icon-form" ng-submit="paybackCtrl.submit($event)" ng-if="paybackCtrl.showForm()">
+        <i class="md md-person"></i>
+        <user-selector model="paybackCtrl.payback.user"
+                       placeholder="Qui ?"
+                       ng-if="paybackCtrl.payback.receive"
+                       users="paybackCtrl.users.receive"></user-selector>
+        <user-selector model="paybackCtrl.payback.user"
+                       placeholder="Qui ?"
+                       ng-if="!paybackCtrl.payback.receive"
+                       users="paybackCtrl.users.give"></user-selector>
+
+        <i class="md md-attach-money"></i>
+        <input type="tel" placeholder="Combien ?" ng-model="paybackCtrl.payback.amount" money>
+
+        <div class="alert hidden" ng-class="{hidden:paybackCtrl.debtAfterAction() == 0}">
+            <span ng-if="paybackCtrl.payback.receive">
+                {{ paybackCtrl.payback.user.name }} vous doit {{ paybackCtrl.actualDebt() | currency:'€' }}.
+            </span>
+            <span ng-if="!paybackCtrl.payback.receive">
+                Vous devez {{ paybackCtrl.actualDebt() | currency:'€' }} à {{ paybackCtrl.payback.user.name }}.
+            </span>
+            Après cet échange
+            <soan ng-if="paybackCtrl.payback.receive">
+                <span ng-if="paybackCtrl.debtAfterAction() > 0">
+                    il vous devra encore <b>{{ paybackCtrl.debtAfterAction() | currency:'€' }}</b>.
+                </span>
+                <span ng-if="paybackCtrl.debtAfterAction() < 0">
+                    vous lui devrez <b>{{ -paybackCtrl.debtAfterAction() | currency:'€' }}</b>.
+                </span>
+            </soan>
+            <span ng-if="!paybackCtrl.payback.receive">
+                <span ng-if="paybackCtrl.debtAfterAction() > 0">
+                    vous lui devrez encore <b>{{ paybackCtrl.debtAfterAction() | currency:'€' }}</b>.
+                </span>
+                <span ng-if="paybackCtrl.debtAfterAction() < 0">
+                    il vous devra <b>{{ -paybackCtrl.debtAfterAction() | currency:'€' }}</b>.
+                </span>
+            </span>
+        </div>
+        <button class="btn raised" ng-if="!paybackCtrl.payback.receive">Rembourser</button>
+        <button class="btn raised" ng-if="paybackCtrl.payback.receive">Encaisser</button>
+    </form>
+    <div ng-if="!paybackCtrl.showForm()" style="text-align: center; padding-top: 56px">
+        <div class="profile xl" style="background-image: url({{ paybackCtrl.user.profileUrl }})"></div>
+        <h1>Félicitation</h1>
+        <p class="subtitle" ng-if="!paybackCtrl.payback.receive">Vous n'avez aucune dette envers vos amis !</p>
+        <p class="subtitle" ng-if="paybackCtrl.payback.receive">Aucun de vos amis ,'a de dette envers vous !</p>
+    </div>
+</section>

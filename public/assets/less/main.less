@@ -50,6 +50,13 @@ article{
         width: 40px;
         height: 40px;
     }
+
+    &.xl{
+        width: 64px;
+        height: 64px;
+        margin: auto;
+        display: block;
+    }
 }
 
 .btn {
@@ -75,6 +82,7 @@ article{
 .list-item{
     padding: 16px 0;
     position: relative;
+    display: block;
 
     &:after{
         content: "";
@@ -106,10 +114,79 @@ h1{
 
 .subtitle{
     font-size: 14px;
-    color: @gray;
+    color: @dark-gray;
     margin-top: -4px;
 }
 
 .pull-right{
     float: right;
+}
+
+.alert{
+    background: @light-black;
+    padding: 24px;
+    color: @white;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all .5s;
+
+    &.hidden{
+        transform: translateY(100%);
+        transition: all 0s;
+    }
+}
+
+b{
+    font-weight: normal;
+    color: @accent;
+}
+
+.submenu{
+    background: @white;
+    position: absolute;
+    border-radius: 3px;
+    .shadow();
+    padding: 8px 0;
+    z-index: 1900;
+    top: -8px;
+    right: 0;
+    font-size: 16px;
+    transition: all .1s;
+    transform-origin: top right;
+
+    ~ .dismiss{
+        content: "";
+        position: fixed;
+        z-index: 1800;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    &.hidden{
+        opacity: 0;
+        visibility: hidden;
+        transition: all .1s, visibility 0s .1s;
+        transform: scale(.2);
+
+        ~ .dismiss{
+            visibility: hidden;
+        }
+    }
+
+    > *{
+        display: block;
+        text-decoration: none;
+        color: @black;
+        padding: 0 16px;
+        line-height: 48px;
+        white-space: nowrap;
+
+        &:hover{
+            background: @dark-white;
+        }
+    }
 }
