@@ -14,10 +14,13 @@
 <div class="modal user-list hidden"
      ng-class="{hidden:!ctrl.selecting}"
         >
-    <div ng-repeat="user in ctrl.friends"
-         ng-click="ctrl.select(user)"
-            >
-        <user-chip user="user" selected="ctrl.isSelected(user)"></user-chip>
+    <input placeholder="Rechercher" ng-model="ctrl.filter" ng-if="ctrl.friends.length > 3">
+    <div class="content">
+        <div ng-repeat="user in ctrl.friends | filter : {name:ctrl.filter}"
+             ng-click="ctrl.select(user)"
+                >
+            <user-chip user="user" selected="ctrl.isSelected(user)"></user-chip>
+        </div>
     </div>
 
     <div class="actions">

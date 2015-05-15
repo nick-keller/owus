@@ -1,8 +1,5 @@
 <section style="padding-top: 64px">
-    <div class="tabs">
-        <a ng-class="{active:!paybackCtrl.payback.receive}" ng-click="paybackCtrl.setReceive(false)">Rembourser</a>
-        <a ng-class="{active:paybackCtrl.payback.receive}" ng-click="paybackCtrl.setReceive(true)">Encaisser</a>
-    </div>
+    <tabs tabs="{give:'Rembourser',receive:'Encaisser'}" control="paybackCtrl.tabCtrl" change="paybackCtrl.setReceive($key == 'receive')"></tabs>
 
     <form class="icon-form" ng-submit="paybackCtrl.submit($event)" ng-if="paybackCtrl.showForm()">
         <i class="md md-person"></i>
@@ -50,6 +47,6 @@
         <div class="profile xl" style="background-image: url({{ paybackCtrl.user.profileUrl }})"></div>
         <h1>Félicitation</h1>
         <p class="subtitle" ng-if="!paybackCtrl.payback.receive">Vous n'avez aucune dette envers vos amis !</p>
-        <p class="subtitle" ng-if="paybackCtrl.payback.receive">Aucun de vos amis ,'a de dette envers vous !</p>
+        <p class="subtitle" ng-if="paybackCtrl.payback.receive">Aucun de vos amis n'a de dette envers vous !</p>
     </div>
 </section>

@@ -27,7 +27,7 @@
     <div ng-if="ctrl.deployed">
         <div class="timeline">
             <div ng-repeat="expense in debt.expenses | orderBy:'-date'" class="event">
-                <i class="md" ng-class="{'md-add':ctrl.userIsPayer(expense), 'md-remove':!ctrl.userIsPayer(expense)}"></i>
+                <i class="md" ng-class="{'md-call-received':!ctrl.userIsPayer(expense)}"></i>
                 <span class="pull-right">{{ expense.amount / expense.recipients.length |currency:'' }}</span>
                 {{ expense.title }}
                 <small>

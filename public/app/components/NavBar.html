@@ -27,3 +27,6 @@
     </a>
 </div>
 <div class="sidebar-out" ng-class="{deployed:navBarCtrl.menuDeployed}" ng-click="navBarCtrl.toggleSidebar()"></div>
+<div class="alert hidden" ng-class="{hidden:!navBarCtrl.showSnackbar}">
+    {{ navBarCtrl.snackbarContent }}
+</div>

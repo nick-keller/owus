@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('owus')
-        .controller('paybackController', ['$http', 'user', '$scope', '$state', 'Expense', function($http, user, $scope, $state, Expense){
+        .controller('paybackController', ['$http', 'user', '$scope', '$state', 'Expense', 'snackbar', function($http, user, $scope, $state, Expense, snackbar){
             var vm = this;
 
             var indexOfUser = function(u){
@@ -30,13 +30,15 @@
                 amount: null
             };
 
+            vm.tabCtrl = {};
+
             $http.get('/me/debts').success(function(data) {
                 vm.debts = data;
 
                 data.forEach(function(debt){
                     if(debt.amount > 0)
                         vm.users.give.push(debt.user);
-                    else
+                    else if(debt.amount < 0)
                         vm.users.receive.push(debt.user);
                 });
 
@@ -45,7 +47,8 @@
 
                     if(~i) {
                         vm.payback.user = vm.debts[i].user;
-                        vm.payback.receive = vm.debts[i].amount < 0
+                        vm.payback.receive = vm.debts[i].amount < 0;
+                        vm.tabCtrl.select(vm.payback.receive ? 'receive' : 'give');
                     }
                 }
             });
@@ -71,6 +74,10 @@
                     user: null,
                     amount: null
                 };
+            };
+
+            vm.getTab = function() {
+                return vm.payback.receive ? 'receive' : 'give';
             };
 
             vm.actualDebt = function() {
@@ -99,6 +106,7 @@
                 });
 
                 vm.expense.$save(function(){
+                    snackbar.add("C'est fait !");
                     $state.go('home');
                 });
             };

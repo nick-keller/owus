@@ -15,8 +15,6 @@ nav{
     color: @white;
     font-size: 24px;
     .shadow();
-    overflow: hidden;
-    white-space: nowrap;
     transition: all .3s;
     z-index: 1000;
 
@@ -160,7 +158,21 @@ nav{
 
         &.active{
             color: @white;
-            box-shadow: 0 -2px @accent inset;
+        }
+    }
+
+    .current{
+        position: absolute;
+        height: 2px;
+        padding: 0;
+        background: @accent;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transition: right .3s, left .3s .1s;
+
+        &.left{
+            transition: left .3s, right .3s .1s;
         }
     }
 }

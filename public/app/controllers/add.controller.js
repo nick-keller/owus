@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('owus')
-        .controller('addController', ['user', 'Expense', '$state', function(user, Expense, $state){
+        .controller('addController', ['user', 'Expense', '$state', 'snackbar', function(user, Expense, $state, snackbar){
             var vm = this;
 
             vm.actionName = 'Ajouter';
@@ -19,6 +19,7 @@
 
                 vm.expense.$save(function(){
                     $state.go('home');
+                    snackbar.add("C'est noté !");
                 });
             };
         }])

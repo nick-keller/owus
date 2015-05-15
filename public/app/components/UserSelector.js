@@ -16,6 +16,7 @@
 
             vm.selectedUsers = vm.multiple ? vm.model : !vm.model ? [] : [vm.model];
             vm.selecting = false;
+            vm.filter = '';
 
             vm.select = function(user) {
                 if(vm.multiple) {

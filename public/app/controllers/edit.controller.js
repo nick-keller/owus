@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('owus')
-        .controller('editController', ['user', 'Expense', '$state', function(user, Expense, $state){
+        .controller('editController', ['user', 'Expense', '$state', 'snackbar', function(user, Expense, $state, snackbar){
             var vm = this;
 
             vm.actionName = 'Editer';
@@ -13,6 +13,7 @@
                 $event.preventDefault();
 
                 vm.expense.$edit(function(){
+                    snackbar.add('Bien mis à jour !');
                     $state.go('home');
                 });
             };

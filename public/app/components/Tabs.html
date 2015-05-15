@@ -1,0 +1,4 @@
+<div class="tabs">
+    <a ng-repeat="(key,tab) in ctrl.tabs" ng-class="{active:ctrl.isSelected(key)}" ng-click="ctrl.select(key)" data-key="{{key}}">{{ tab }}</a>
+    <div class="current"></div>
+</div>

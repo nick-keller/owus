@@ -131,10 +131,14 @@ h1{
     right: 0;
     bottom: 0;
     transition: all .5s;
+    z-index: 10001;
 
     &.hidden{
         transform: translateY(100%);
-        transition: all 0s;
+
+        &.quick {
+            transition: all 0s;
+        }
     }
 }
 

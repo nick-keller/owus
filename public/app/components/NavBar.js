@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('owus')
-        .controller('navBarController', ['user', '$rootScope', '$state', function(user, $rootScope, $state){
+        .controller('navBarController', ['user', '$rootScope', '$state', 'snackbar', function(user, $rootScope, $state, snackbar){
             var vm = this;
             var fromState;
 
@@ -10,6 +10,12 @@
             vm.title = 'Owus';
             vm.showAddBtn = true;
             vm.menuDeployed = false;
+            vm.snackbar = snackbar;
+            vm.showSnackbar = false;
+            snackbar.listen(function(show, current){
+                vm.showSnackbar = show;
+                vm.snackbarContent = current;
+            });
 
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, _fromState, fromParams){
                 vm.title = toState.data.title;
