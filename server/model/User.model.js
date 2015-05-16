@@ -18,5 +18,6 @@ var UserSchema = new Schema({
 UserSchema.statics.findFriends = repository.findFriends;
 UserSchema.statics.findIds = repository.findIds;
 UserSchema.statics.findId = repository.findId;
+UserSchema.statics.findMaximalCliques = repository.findMaximalCliques;
 
 mongoose.model('User', UserSchema);

@@ -46,6 +46,15 @@
                         title: 'Historique'
                     }
                 })
+                .state('transfer', {
+                    url: "/transfer",
+                    templateUrl: "views/transfer.html",
+                    controller: 'transferController',
+                    controllerAs: 'transferCtrl',
+                    data: {
+                        title: 'Transfères'
+                    }
+                })
                 .state('payback', {
                     url: "/pay-back/{facebookId:int}",
                     templateUrl: "views/payback.html",

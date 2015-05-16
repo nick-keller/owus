@@ -11,4 +11,7 @@ router.route('/debts')
 router.route('/expenses')
     .get(controller.expenses);
 
+router.route('/transfer')
+    .get(controller.transfer);
+
 module.exports = router;

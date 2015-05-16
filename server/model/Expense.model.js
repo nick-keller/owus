@@ -45,6 +45,7 @@ var ExpenseSchema = new Schema({
 });
 
 ExpenseSchema.statics.findDebtsOfUser = repository.findDebtsOfUser;
+ExpenseSchema.statics.findDebtsOfUsers = repository.findDebtsOfUsers;
 ExpenseSchema.statics.findWithUser = repository.findWithUser;
 
 mongoose.model('Expense', ExpenseSchema);

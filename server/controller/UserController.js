@@ -19,3 +19,21 @@ module.exports.expenses = function(req, res) {
         res.json(expenses);
     });
 };
+
+module.exports.transfer = function(req, res, next) {
+    User.findOne({facebookId: 1430395700611720}, 'name facebookId friends _id', function(err, user){
+        if(err) return next(err);
+
+        User.findMaximalCliques(user, function(err, friends, cliques){
+            if(err) return next(err);
+
+            friends.push(user);
+
+            Expense.findDebtsOfUsers(friends, cliques, function(err, cliques) {
+                if(err) return next(err);
+
+                res.json(cliques);
+            });
+        });
+    });
+};
