@@ -26,10 +26,13 @@ module.exports.transfer = function(req, res, next) {
 
         friends.push(req.user);
 
-        Expense.findDebtsOfUsers(friends, cliques, function(err, cliques) {
+        Expense.findDebtsOfUsers(friends, cliques, function(err, cliques, debts) {
             if(err) return next(err);
 
-            res.json(cliques);
+            res.json({
+                groups: cliques.map(function(users){return {name: "Groupe automatique",users:users};}),
+                debts: debts
+            });
         });
     });
 };

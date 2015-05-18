@@ -1,0 +1,95 @@
+@import "mixins/all";
+
+.group{
+    &:after{
+        content: "";
+        clear: both;
+        display: block;
+    }
+
+    .faces{
+        @size: 32px;
+        background: @light-black;
+        height: @size *2;
+        width: @size *2;
+        font-size: 0;
+        float: right;
+        position: relative;
+        overflow: hidden;
+
+        > *{
+            display: inline-block;
+            width: @size;
+            height: @size;
+            background: center;
+            background-size: cover;
+            vertical-align: top;
+            color: @gray;
+            font-size: 14px;
+            text-align: center;
+            line-height: @size;
+
+            &.counter{
+                position: absolute;
+                background: @light-black;
+                bottom: 0;
+                right: 0;
+            }
+
+            &:nth-child(3).counter{
+                width: @size *2;
+            }
+
+            &:nth-child(5).counter{
+                display: none;
+            }
+        }
+    }
+
+    .item{
+        clear: both;
+        padding: 4px 0;
+    }
+
+    .modal .item{
+        line-height: 32px;
+        text-align: center;
+
+        .profile{
+            width: 32px;
+            height: 32px;
+            vertical-align: middle;
+        }
+
+        .arrow{
+            @color: @light-black;
+            color: @dark-gray;
+            border-bottom: solid 2px @color;
+            display: inline-block;
+            padding: 0 10px 0 8px;
+            margin: 0 16px;
+            min-width: 45px;
+            text-align: center;
+            vertical-align: top;
+            font-size: 14px;
+            line-height: 16px;
+            position: relative;
+
+            &:after, &:before{
+                content: "";
+                position: absolute;
+                width: 8px;
+                height: 2px;
+                background: @color;
+                right: 0;
+                bottom: -2px;
+                transform-origin: right;
+                transform: rotate(45deg);
+            }
+
+            &:after{
+                transform: rotate(-45deg);
+            }
+        }
+    }
+}

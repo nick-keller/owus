@@ -1,0 +1,65 @@
+<article class="group">
+    <div class="faces" ng-click="ctrl.showMembers = true">
+        <div ng-repeat="user in ctrl.group.users" style="background-image: url({{ user.profileUrl }})"></div>
+        <div class="counter" ng-bind-html="ctrl.lengthMessage()"></div>
+    </div>
+    <div ng-click="ctrl.deployed = !ctrl.deployed">
+        <h1>{{ ctrl.group.name }}</h1>
+        <small ng-if="ctrl.userOwnsGroup()">
+            Vous devez au groupe {{ ctrl.userAbsDebt() | currency:'€' }} <i class="md md-keyboard-backspace md-rotate-270 red"></i>
+        </small>
+        <small ng-if="!ctrl.userOwnsGroup()">
+            Le groupe vous doit {{ ctrl.userAbsDebt() | currency:'€' }} <i class="md md-keyboard-backspace md-rotate-90 green"></i>
+        </small>
+    </div>
+    <div ng-if="ctrl.deployed">
+        <hr>
+        <div ng-repeat="user in ctrl.group.users | orderBy:'-debt'" class="item">
+            <span class="pull-right" ng-if="user.debt > 0">
+                {{ user.debt | currency:'€' }} <i class="md md-keyboard-backspace md-rotate-270 red"></i>
+            </span>
+            <span class="pull-right" ng-if="user.debt <= 0">
+                {{ -user.debt | currency:'€' }} <i class="md md-keyboard-backspace md-rotate-90 green"></i>
+            </span>
+            <div class="profile" style="background-image: url({{ user.profileUrl }})"></div>
+            {{ user.name }}
+        </div>
+        <a class="btn" style="text-align: right;padding-right: 0;display: block" ng-click="ctrl.showTransfer = true" ng-if="ctrl.oldDebts.length > ctrl.newDebts.length">Optimiser</a>
+        <div class="modal hidden" ng-class="{hidden:!ctrl.showTransfer}">
+            <div class="content padded" style="max-height: 70vh">
+                <h1>Actuellement</h1>
+                <div ng-repeat="debt in ctrl.oldDebts" class="item">
+                    <div class="profile" style="background-image: url({{ debt.from.profileUrl }})"></div>
+                    <span class="arrow">{{ debt.amount | currency : '€' }}</span>
+                    <div class="profile" style="background-image: url({{ debt.to.profileUrl }})"></div>
+                </div>
+                <h1>Après transfère</h1>
+                <div ng-repeat="debt in ctrl.newDebts" class="item">
+                    <div class="profile" style="background-image: url({{ debt.from.profileUrl }})"></div>
+                    <span class="arrow">{{ debt.amount | currency : '€' }}</span>
+                    <div class="profile" style="background-image: url({{ debt.to.profileUrl }})"></div>
+                </div>
+            </div>
+            <div class="actions">
+                <a ng-click="ctrl.showTransfer = false">Transférer</a>
+                <a ng-click="ctrl.showTransfer = false">Fermer</a>
+            </div>
+        </div>
+        <div class="dismiss"  ng-click="ctrl.showTransfer = false"></div>
+    </div>
+</article>
+
+<div class="modal user-list hidden" ng-class="{hidden:!ctrl.showMembers}">
+    <h1>{{ ctrl.group.name }}</h1>
+    <div class="content">
+        <div ng-repeat="user in ctrl.group.users"
+                >
+            <user-chip user="user"></user-chip>
+        </div>
+    </div>
+    <div class="actions">
+        <!--<a ng-click="ctrl.showMembers = false">Editer</a>-->
+        <a ng-click="ctrl.showMembers = false">Fermer</a>
+    </div>
+</div>
+<div class="dismiss"  ng-click="ctrl.showMembers = false"></div>

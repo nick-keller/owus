@@ -49,7 +49,7 @@ module.exports.findMaximalCliques = function(user, cb) {
         facebookId: {
             $in: user.friends
         }
-    }, 'name facebookId friends _id', function(err, friends){
+    }, 'name facebookId profileUrl friends _id', function(err, friends){
         if(err)
             return cb(err);
         var cliques = [[_.merge({}, user)._doc]];

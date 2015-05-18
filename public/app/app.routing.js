@@ -17,6 +17,15 @@
                         title: 'Owus'
                     }
                 })
+                .state('expenses', {
+                    url: "/expenses",
+                    templateUrl: "views/expenses.html",
+                    controller: 'expensesController',
+                    controllerAs: 'expensesCtrl',
+                    data: {
+                        title: 'Historique'
+                    }
+                })
                 .state('add', {
                     url: "/expenses/add",
                     templateUrl: "views/add.html",
@@ -37,24 +46,25 @@
                         addBtn: false
                     }
                 })
-                .state('expenses', {
-                    url: "/expenses",
-                    templateUrl: "views/expenses.html",
-                    controller: 'expensesController',
-                    controllerAs: 'expensesCtrl',
-                    data: {
-                        title: 'Historique'
-                    }
-                })
                 .state('transfer', {
-                    url: "/transfer",
+                    url: "/groups",
                     templateUrl: "views/transfer.html",
                     controller: 'transferController',
                     controllerAs: 'transferCtrl',
                     data: {
-                        title: 'Transfères'
+                        title: 'Groupes',
+                        addBtn: false
                     }
                 })
+//                .state('addGroup', {
+//                    url: "/groups/add",
+//                    templateUrl: "views/transfer.html",
+//                    controller: 'transferController',
+//                    controllerAs: 'transferCtrl',
+//                    data: {
+//                        title: 'Groupes'
+//                    }
+//                })
                 .state('payback', {
                     url: "/pay-back/{facebookId:int}",
                     templateUrl: "views/payback.html",

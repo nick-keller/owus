@@ -28,7 +28,8 @@ gulp.task('copy-angular', function () {
     return gulp.src([
         'bower_components/angular/angular.js',
         'bower_components/angular-ui-router/release/angular-ui-router.js',
-        'bower_components/angular-resource/angular-resource.js'
+        'bower_components/angular-resource/angular-resource.js',
+        'bower_components/angular-sanitize/angular-sanitize.js'
     ])
         .pipe(gulp.dest('public/assets/compiled/temp'));
 });

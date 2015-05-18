@@ -165,6 +165,6 @@ module.exports.findDebtsOfUsers = function(users, cliques, cb) {
                 });
             });
 
-            cb(null, cliques);
+            cb(null, cliques, debts);
         });
 };
