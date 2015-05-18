@@ -9,3 +9,4 @@ public/assets/fonts/
 *.lock
 
 server/config/parameters.js
+ssl_certs/*

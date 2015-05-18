@@ -83,11 +83,14 @@
                 background: @color;
                 right: 0;
                 bottom: -2px;
+                -webkit-transform-origin: right;
                 transform-origin: right;
+                -webkit-transform: rotate(45deg);
                 transform: rotate(45deg);
             }
 
             &:after{
+                -webkit-transform: rotate(-45deg);
                 transform: rotate(-45deg);
             }
         }

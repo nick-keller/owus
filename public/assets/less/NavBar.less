@@ -15,6 +15,7 @@ nav{
     color: @white;
     font-size: 24px;
     .shadow();
+    -webkit-transition: all .3s;
     transition: all .3s;
     z-index: 1000;
 
@@ -51,9 +52,11 @@ nav{
         margin: 0;
         z-index: 1000;
         .shadow(2);
+        -webkit-transition: all .3s;
         transition: all .3s;
 
         &.hidden{
+            -webkit-transform: translateY(@size + 16px);
             transform: translateY(@size + 16px);
         }
     }
@@ -71,12 +74,15 @@ nav{
     background: @white;
     z-index: 1100;
     overflow: hidden;
+    -webkit-transition: all .3s;
     transition: all .3s;
     width: @sidebarWidth;
+    -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
     .shadow(3);
 
     &.deployed{
+        -webkit-transform: translateX(0);
         transform: translateX(0);
     }
 
@@ -123,6 +129,7 @@ nav{
     bottom: 0;
     z-index: 1100;
     background: rgba(0,0,0,.5);
+    -webkit-transition: all .3s, visibility 0s .3s;
     transition: all .3s, visibility 0s .3s;
     opacity: 0;
     visibility: hidden;
@@ -131,6 +138,7 @@ nav{
         left: @sidebarWidth;
         opacity: 1;
         visibility: visible;
+        -webkit-transition: all .3s, visibility 0s;
         transition: all .3s, visibility 0s;
     }
 }
@@ -153,6 +161,7 @@ nav{
         padding: 16px 0;
         text-transform: uppercase;
         font-size: 14px;
+        -webkit-transition: all .4s;
         transition: all .4s;
 
         &.active{
@@ -168,9 +177,11 @@ nav{
         bottom: 0;
         left: 0;
         right: 0;
+        -webkit-transition: right .3s, left .3s .1s;
         transition: right .3s, left .3s .1s;
 
         &.left{
+            -webkit-transition: left .3s, right .3s .1s;
             transition: left .3s, right .3s .1s;
         }
     }

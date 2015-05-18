@@ -9,7 +9,9 @@
     top: @navbar-height + 16px;
     left: 16px;
     right: 16px;
+    -webkit-transition: all .3s, visibility 0s;
     transition: all .3s, visibility 0s;
+    -webkit-transform-origin: top;
     transform-origin: top;
 
     &.user-list{
@@ -17,10 +19,11 @@
     }
 
     &.hidden{
-        transform: translateY(-40px);
+        -webkit-transition: all .3s, visibility 0s .3s;
         transition: all .3s, visibility 0s .3s;
         opacity: 0;
         visibility: hidden;
+        -webkit-transform: scale(.5);
         transform: scale(.5);
 
         ~ .dismiss{

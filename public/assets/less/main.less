@@ -130,13 +130,16 @@ h1{
     left: 0;
     right: 0;
     bottom: 0;
+    -webkit-transition: all .5s;
     transition: all .5s;
     z-index: 10001;
 
     &.hidden{
+        -webkit-transform: translateY(100%);
         transform: translateY(100%);
 
         &.quick {
+            -webkit-transition: all 0s;
             transition: all 0s;
         }
     }
@@ -157,7 +160,9 @@ b{
     top: -8px;
     right: 0;
     font-size: 16px;
+    -webkit-transition: all .1s;
     transition: all .1s;
+    -webkit-transform-origin: top right;
     transform-origin: top right;
     font-family: 'Roboto', sans-serif;
 
@@ -174,7 +179,9 @@ b{
     &.hidden{
         opacity: 0;
         visibility: hidden;
+        -webkit-transition: all .1s, visibility 0s .1s;
         transition: all .1s, visibility 0s .1s;
+        -webkit-transform: scale(.2);
         transform: scale(.2);
 
         ~ .dismiss{
