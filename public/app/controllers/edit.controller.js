@@ -9,9 +9,7 @@
 
             vm.expense = Expense.get({id:$state.params.id});
 
-            vm.submit = function($event) {
-                $event.preventDefault();
-
+            vm.submit = function() {
                 vm.expense.$edit(function(){
                     snackbar.add("C'est fait !");
                     $state.go('home');

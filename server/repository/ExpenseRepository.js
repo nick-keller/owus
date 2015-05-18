@@ -142,6 +142,7 @@ module.exports.findDebtsOfUsers = function(users, cliques, cb) {
             });
 
             cliques.forEach(function(clique) {
+                console.log(clique.length);
                 var isUserInClique = function(u) {
                     for(var i=0; i<clique.length; ++i) {
                         if(eq(clique[i], u))
@@ -150,10 +151,7 @@ module.exports.findDebtsOfUsers = function(users, cliques, cb) {
                     return false;
                 };
 
-                console.log(clique.length);
-
                 clique.forEach(function(user) {
-                    console.log(user.name);
                     user.debt = 0;
 
                     if(debts[user.facebookId] !== undefined) {

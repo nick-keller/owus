@@ -14,7 +14,8 @@
                     controller: 'homeController',
                     controllerAs: 'homeCtrl',
                     data: {
-                        title: 'Owus'
+                        title: 'Owus',
+                        addBtn: 'add'
                     }
                 })
                 .state('expenses', {
@@ -23,7 +24,8 @@
                     controller: 'expensesController',
                     controllerAs: 'expensesCtrl',
                     data: {
-                        title: 'Historique'
+                        title: 'Historique',
+                        addBtn: 'add'
                     }
                 })
                 .state('add', {
@@ -53,18 +55,29 @@
                     controllerAs: 'transferCtrl',
                     data: {
                         title: 'Groupes',
+                        addBtn: 'addGroup'
+                    }
+                })
+                .state('addGroup', {
+                    url: "/groups/add",
+                    templateUrl: "views/addGroup.html",
+                    controller: 'addGroupController',
+                    controllerAs: 'addGrpCtrl',
+                    data: {
+                        title: 'Nouveau groupe',
                         addBtn: false
                     }
                 })
-//                .state('addGroup', {
-//                    url: "/groups/add",
-//                    templateUrl: "views/transfer.html",
-//                    controller: 'transferController',
-//                    controllerAs: 'transferCtrl',
-//                    data: {
-//                        title: 'Groupes'
-//                    }
-//                })
+                .state('editGroup', {
+                    url: "/groups/{id}/edit",
+                    templateUrl: "views/addGroup.html",
+                    controller: 'editGroupController',
+                    controllerAs: 'addGrpCtrl',
+                    data: {
+                        title: 'Editer',
+                        addBtn: false
+                    }
+                })
                 .state('payback', {
                     url: "/pay-back/{facebookId:int}",
                     templateUrl: "views/payback.html",

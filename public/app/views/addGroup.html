@@ -1,0 +1,12 @@
+<section>
+    <form class="icon-form" ng-submit="addGrpCtrl.submit()">
+
+        <i class="md md-label"></i>
+        <input placeholder="Nom du groupe" ng-model="addGrpCtrl.group.name">
+
+        <i class="md md-people"></i>
+        <user-selector model="addGrpCtrl.group.users" placeholder="Membres"></user-selector>
+
+        <button class="btn raised">{{ addGrpCtrl.actionName }}</button>
+    </form>
+</section>

@@ -58,8 +58,8 @@
         </div>
     </div>
     <div class="actions">
-        <!--<a ng-click="ctrl.showMembers = false">Editer</a>-->
-        <a ng-click="ctrl.showMembers = false">Fermer</a>
+        <a ng-if="ctrl.group._id" ui-sref="editGroup({id:ctrl.group._id})" class="btn">Editer</a>
+        <a ng-click="ctrl.showMembers = false" class="btn">Fermer</a>
     </div>
 </div>
 <div class="dismiss"  ng-click="ctrl.showMembers = false"></div>

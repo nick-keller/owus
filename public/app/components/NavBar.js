@@ -19,14 +19,12 @@
 
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, _fromState, fromParams){
                 vm.title = toState.data.title;
-                vm.showAddBtn = toState.data.addBtn !== undefined ? toState.data.addBtn : true;
+                vm.showAddBtn = toState.data.addBtn !== false ? true : false;
                 fromState = _fromState;
             });
 
-            vm.goBack = function() {
-                if(fromState.name == '')
-                    return $state.go('home');
-                $state.go(fromState);
+            vm.add = function() {
+                $state.go($state.$current.data.addBtn);
             };
 
             vm.toggleSidebar = function() {

@@ -8,7 +8,7 @@ var init = function(parameters) {
     passport.use(new FacebookStrategy({
             clientID: parameters.app_id,
             clientSecret: parameters.app_secret,
-            callbackURL: "http://localhost:3000/login_check"
+            callbackURL: "http://" + parameters.callback + "/login_check"
         },
         function(accessToken, refreshToken, profile, done) {
             User.findOne({facebookId:profile.id}, function(err, user) {

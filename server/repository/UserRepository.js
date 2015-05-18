@@ -52,7 +52,8 @@ module.exports.findMaximalCliques = function(user, cb) {
     }, 'name facebookId profileUrl friends _id', function(err, friends){
         if(err)
             return cb(err);
-        var cliques = [[_.merge({}, user)._doc]];
+        var cliques = [[_.cloneDeep(user)._doc]];
+        console.log(cliques);
 
         function isUserInClique(u, clique) {
             for(var i=0; i<cliques[clique].length; ++i)
@@ -86,12 +87,12 @@ module.exports.findMaximalCliques = function(user, cb) {
                 if(!isFriendWithEveryOneInClique(friend, clique))
                     continue;
 
-                cliques[clique].push(_.merge({}, friend)._doc);
+                cliques[clique].push(_.cloneDeep(friend)._doc);
                 atLeastInOneClique = true;
             }
 
             if(!atLeastInOneClique) {
-                cliques.push([_.merge({}, user)._doc, _.merge({}, friend)._doc]);
+                cliques.push([_.cloneDeep(user)._doc, _.cloneDeep(friend)._doc]);
                 i = -1;
             }
         }

@@ -4,7 +4,7 @@
         <i class="md md-menu"></i>
     </a>
     <span>{{ navBarCtrl.title }}</span>
-    <a class="add-btn" ui-sref="add" ng-class="{hidden:!navBarCtrl.showAddBtn}">
+    <a class="add-btn" ng-click="navBarCtrl.add()" ng-class="{hidden:!navBarCtrl.showAddBtn}">
         <i class="md md-add"></i>
     </a>
 </nav>

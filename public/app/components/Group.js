@@ -11,9 +11,9 @@
 
             vm.lengthMessage = function() {
                 if(vm.group.users.length == 2)
-                    return '<i class="md md-apps"></i> 2';
+                    return '<i class="md md-person"></i> 2';
                 if(vm.group.users.length == 3)
-                    return '<i class="md md-apps"></i>';
+                    return '<i class="md md-person"></i>';
                 return '+' + (vm.group.users.length -3);
             };
 
