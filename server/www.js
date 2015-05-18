@@ -1,7 +1,24 @@
 #!/usr/bin/env node
 
 var app = require('./app');
-var http = require('http');
+var http = require('https');
+var crypto = require('crypto');
+var fs = require('fs');
+
+var options = {
+    key: fs.readFileSync('ssl_certs/server.key'),
+    cert: fs.readFileSync('ssl_certs/server.crt')
+};
+
+var privateKey = fs.readFileSync('ssl_certs/server.key').toString();
+var certificate = fs.readFileSync('ssl_certs/server.crt').toString();
+
+var credentials = crypto.createCredentials({key: privateKey, cert: certificate});
+
+var handler = function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello World\n');
+};
 
 /**
  * Get port from environment and store in Express.
@@ -12,7 +29,9 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-var server = http.createServer(app);
+var server = http.createServer(options, app);
+//server.setSecure(credentials);
+//server.addListener("request", handler);
 
 /**
  * Listen on provided port, on all network interfaces.
