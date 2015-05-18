@@ -13,7 +13,7 @@
                 $event.preventDefault();
 
                 vm.expense.$edit(function(){
-                    snackbar.add('Bien mis à jour !');
+                    snackbar.add("C'est fait !");
                     $state.go('home');
                 });
             };

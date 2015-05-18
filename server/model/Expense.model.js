@@ -9,37 +9,37 @@ var Schema = mongoose.Schema;
 var ExpenseSchema = new Schema({
     title: {
         type: String,
-        required: true,
+        required: 'Vous devez donner un nom à cette dépense.',
         trim: true
     },
     amount: {
         type: Number,
-        required: true,
+        required: 'Vous devez indiquer un montant voyons !',
         trim: true,
         validate: {
             validator: function(val) {
                 return val > 0;
             },
-            msg: "Le montant doit être suppérieur à zéro."
+            msg: "Le montant est forcément suppérieur à zéro."
         }
     },
     date: Date,
     payer: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: 'Vous devez indiquer qui a payé.'
     },
     recipients: {
         type: [{
             type:Schema.Types.ObjectId,
             ref: 'User'
         }],
-        required: true,
+        required: 'Vous devez indiquer qui est concerné par cette dépense.',
         validate: {
             validator: function(val) {
                 return val.length > 0;
             },
-            msg: "Au moint un bénéficiaire attendu."
+            msg: "Il doit y avoir au moins une personne concerné voyons !"
         }
     }
 });

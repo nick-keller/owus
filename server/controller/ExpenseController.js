@@ -58,8 +58,6 @@ module.exports.edit = function(req, res, next) {
 
             req.body.recipients = ids;
 
-            var expense = new Expense(req.body);
-
             Expense.update({_id:req.body._id}, {$set: req.body}, function(err, expense){
                 if(err) return next(err);
 

@@ -33,7 +33,7 @@
                     <span class="arrow">{{ debt.amount | currency : '€' }}</span>
                     <div class="profile" style="background-image: url({{ debt.to.profileUrl }})"></div>
                 </div>
-                <h1>Après transfère</h1>
+                <h1>Après transfert</h1>
                 <div ng-repeat="debt in ctrl.newDebts" class="item">
                     <div class="profile" style="background-image: url({{ debt.from.profileUrl }})"></div>
                     <span class="arrow">{{ debt.amount | currency : '€' }}</span>
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="actions">
-                <a ng-click="ctrl.showTransfer = false">Transférer</a>
+                <a ng-click="ctrl.transfer()">Transférer</a>
                 <a ng-click="ctrl.showTransfer = false">Fermer</a>
             </div>
         </div>

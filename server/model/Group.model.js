@@ -9,10 +9,10 @@ var Schema = mongoose.Schema;
 var GroupSchema = new Schema({
     name: {
         type: String,
-        required: true,
+        required: 'Vous devez donner un nom au groupe.',
         trim: true
     },
-    members: {
+    users: {
         type: [{
             type:Schema.Types.ObjectId,
             ref: 'User'
@@ -22,7 +22,7 @@ var GroupSchema = new Schema({
             validator: function(val) {
                 return val.length > 1;
             },
-            msg: "Au moint deux membres attendu."
+            msg: "Un groupe de moins de deux membres n'est pas un groupe !"
         }
     }
 });

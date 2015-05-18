@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('owus')
-        .controller('groupController', ['user', function(user){
+        .controller('groupController', ['user', 'Expense', '$state', 'snackbar', function(user, Expense, $state, snackbar){
             var vm = this;
 
             vm.showMembers = false;
@@ -39,6 +39,91 @@
                         return true;
                 }
                 return false;
+            };
+
+            vm.transfer = function() {
+                var delta = [];
+
+                var eq = function(u1, u2) {
+                    return u1.facebookId == u2.facebookId;
+                };
+
+                var getNewDebt = function(oldDebt) {
+                    for(var i=0; i<vm.newDebts.length; ++i) {
+                        var newDebt = vm.newDebts[i];
+
+                        if(eq(newDebt.from, oldDebt.from) && eq(newDebt.to, oldDebt.to)) {
+                            vm.newDebts.splice(i, 1);
+                            i--;
+
+                            if(newDebt.amount == oldDebt.amount) return null;
+
+                            if(newDebt.amount > oldDebt.amount) {
+                                return {
+                                    payer: newDebt.to,
+                                    receiver: newDebt.from,
+                                    amount: newDebt.amount - oldDebt.amount
+                                };
+                            } else {
+                                return {
+                                    payer: newDebt.from,
+                                    receiver: newDebt.to,
+                                    amount: oldDebt.amount - newDebt.amount
+                                };
+                            }
+                        }
+
+                        if(eq(newDebt.from, oldDebt.to) && eq(newDebt.to, oldDebt.from)) {
+                            vm.newDebts.splice(i, 1);
+                            i--;
+
+                            return {
+                                payer: newDebt.to,
+                                receiver: newDebt.from,
+                                amount: newDebt.amount + oldDebt.amount
+                            };
+                        }
+                    }
+
+                    return {
+                        payer: oldDebt.from,
+                        receiver: oldDebt.to,
+                        amount: oldDebt.amount
+                    };
+                };
+
+                vm.oldDebts.forEach(function(debt) {
+                    var d = getNewDebt(debt);
+
+                    if(d)
+                        delta.push(d);
+                });
+
+                vm.newDebts.forEach(function(debt) {
+                    delta.push({
+                        payer: debt.to,
+                        receiver: debt.from,
+                        amount: debt.amount
+                    });
+                });
+
+                var counter = delta.length;
+
+                delta.forEach(function(d) {
+                    var expense = new Expense({
+                        title: 'Transfert',
+                        amount: d.amount,
+                        payer: d.payer,
+                        recipients: [d.receiver]
+                    });
+
+                    expense.$save(function() {
+                        if(--counter === 0) {
+                            $state.go('home');
+                            snackbar.add("Les dettes ont bien été transférées !");
+                        }
+                    });
+                })
             };
 
             vm.oldDebts = [];

@@ -34,6 +34,7 @@ var init = function(app) {
     // add routes
     register('/me', 'UserApi');
     register('/expenses', 'ExpenseApi');
+    register('/groups', 'GroupApi');
 
     app.get('/', function (req, res) {
         if(req.user === undefined)
