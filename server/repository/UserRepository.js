@@ -63,7 +63,7 @@ module.exports.findMaximalCliques = function(user, cb) {
         }
 
         function areFriends(u1, u2) {
-            return !!~u1.friends.indexOf(u2.facebookId) && !!~u2.friends.indexOf(u1.facebookId);
+            return !!~u1.friends.indexOf(u2.facebookId) || !!~u2.friends.indexOf(u1.facebookId);
         }
 
         function isFriendWithEveryOneInClique(u,clique) {
